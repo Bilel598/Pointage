@@ -28,12 +28,7 @@ public class Employees implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getUid() {
-		return uid;
-	}
-	public void setUid(Long uid) {
-		this.uid = uid;
-	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -46,11 +41,20 @@ public class Employees implements Serializable{
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+	
 	@Override
 	public String toString() {
 		return "Employees [id=" + id + ", uid=" + uid + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
-	public Employees(Long id, Long uid, String nom, String prenom) {
+	
+	public Employees(Long id, String uid, String nom, String prenom) {
 		super();
 		this.id = id;
 		this.uid = uid;
