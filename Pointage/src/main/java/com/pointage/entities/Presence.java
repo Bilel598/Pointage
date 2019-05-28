@@ -12,28 +12,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name= "Presence")
 public class Presence implements Serializable {
-	
+
 	private static final long serialVersionUID = -7549178500240814334L;
-	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@Id	@GeneratedValue(strategy =GenerationType.AUTO)
 	private Long id;
 	private String date;
 	private String heure_arrivee;
 	private String heure_depart;
 	@ManyToOne
-	private Employees e;
+	private Carte carte;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
+
 	public String getHeure_arrivee() {
 		return heure_arrivee;
 	}
@@ -46,31 +40,35 @@ public class Presence implements Serializable {
 	public void setHeure_depart(String heure_depart) {
 		this.heure_depart = heure_depart;
 	}
-	public Employees getE() {
-		return e;
+
+
+	public Presence() {
+		super();
 	}
-	public void setE(Employees e) {
-		this.e = e;
+	public String getDate() {
+		return date;
+	}
+	public void setDate_arrivee(String date) {
+		this.date = date;
+	}
+	public Carte getCarte() {
+		return carte;
+	}
+	public void setCarte(Carte carte) {
+		this.carte = carte;
 	}
 	@Override
 	public String toString() {
 		return "Presence [id=" + id + ", date=" + date + ", heure_arrivee=" + heure_arrivee + ", heure_depart="
-				+ heure_depart + ", e=" + e + "]";
+				+ heure_depart + ", carte=" + carte + "]";
 	}
-	public Presence(Long id, String date, String heure_arrivee, String heure_depart, Employees e) {
+	public Presence(Long id, String date, String heure_arrivee, String heure_depart, Carte carte) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.heure_arrivee = heure_arrivee;
 		this.heure_depart = heure_depart;
-		this.e = e;
+		this.carte = carte;
 	}
-	public Presence() {
-		super();
-	}
-	
-	
-	
-	
 
 }

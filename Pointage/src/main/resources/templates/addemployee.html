@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ajout d'employé</title>
+</head>
+<body>
+	<div>
+		<h1>Ajout d'employé</h1>
+
+		<form th:action="@{/saveemployee}" method="post">
+			<table>
+				<thead>
+				</thead>
+				<tr>
+					<td>Nom :</td>
+					<td>Prenom :</td>
+					<td>Email :</td>
+					<td>Date de naissance :</td>
+					<td>Carte :</td>
+				</tr>
+				<tbody>
+					<tr>
+						<td><input type="text" name="nom"></td>
+						<td><input type="text" name="prenom"></td>
+						<td><input type="text" name="email"></td>
+						<td><input type="text" name="date_naissance"></td>
+						<td><select name="carte">
+								<option th:each="c:${listCarte}" th:text="${c.uid}"
+									th:value="${c.uid}">
+						</select></td>
+						<td><input type="submit" value="Ajouter"></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+			
+		</form>
+	</div>
+</body>
+</html>

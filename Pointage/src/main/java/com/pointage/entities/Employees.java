@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +20,17 @@ public class Employees implements Serializable{
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	private Long id;
-	private String uid;
-	private String nom, prenom;
+	private String date_naissance,nom,email,prenom;
+	@OneToOne
+	private Carte carte;
 	
+
+	public Carte getCarte() {
+		return carte;
+	}
+	public void setCarte(Carte carte) {
+		this.carte = carte;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -42,24 +51,33 @@ public class Employees implements Serializable{
 		this.prenom = prenom;
 	}
 	
-	public String getUid() {
-		return uid;
+	public String getEmail() {
+		return email;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDate_naissance() {
+		return date_naissance;
+	}
+	public void setDate_naissance(String date_naissance) {
+		this.date_naissance = date_naissance;
 	}
 	
-	@Override
-	public String toString() {
-		return "Employees [id=" + id + ", uid=" + uid + ", nom=" + nom + ", prenom=" + prenom + "]";
-	}
 	
-	public Employees(Long id, String uid, String nom, String prenom) {
+	public Employees(Long id, String date_naissance, String nom, String email, String prenom, Carte carte) {
 		super();
 		this.id = id;
-		this.uid = uid;
+		this.date_naissance = date_naissance;
 		this.nom = nom;
+		this.email = email;
 		this.prenom = prenom;
+		this.carte = carte;
+	}
+	@Override
+	public String toString() {
+		return "Employees [id=" + id + ", date_naissance=" + date_naissance + ", nom=" + nom + ", email=" + email
+				+ ", prenom=" + prenom + ", carte=" + carte + "]";
 	}
 	public Employees() {
 		super();

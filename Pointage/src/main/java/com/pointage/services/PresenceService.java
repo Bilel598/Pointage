@@ -12,13 +12,17 @@ import com.pointage.entities.Presence;
 public class PresenceService {
 	@Autowired
 	private PresenceDAO presenceDAO;
-	
+
 	public List<Presence> listePresence(){
 		return presenceDAO.findAll();
 	}
 	
+
 	public Presence chercherUnePresence(Long id) {
 		return presenceDAO.findById(id).get();		
+	}
+	public Presence chercherUnePresenceByCarte(String uid) {
+		return presenceDAO.presenceByUidOnline(uid);
 	}
 	public Presence chercherUnePresenceByDate(String date) {
 		return presenceDAO.findPresenceByDate(date);
@@ -26,5 +30,8 @@ public class PresenceService {
 	
 	public void save(Presence presence) {
 		presenceDAO.save(presence);
+	}
+	public Presence chercherDerniere() {
+		return presenceDAO.findFirstByOrderByIdDesc();
 	}
 }

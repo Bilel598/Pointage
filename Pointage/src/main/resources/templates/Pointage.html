@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Derniers pointages</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Heure arrivée</td>
+				<td>Heure départ</td>
+				<td>Uid Carte</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p: ${listPresence}">
+				<td th:text="${p.date}"></td>
+				<td th:text="${p.heure_arrivee}"></td>
+				<td th:text="${p.heure_depart}"></td>
+				<td><a  href='/' th:text="${p.carte.uid}"></a></td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>

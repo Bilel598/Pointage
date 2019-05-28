@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Page d'acceuil</title>
+</head>
+<body>
+<h1>Liste des employés <a th:text="${msg}"></a></h1>
+<table>
+		<thead>
+			<tr>
+				<td>Nom</td>
+				<td>Prenom</td>
+				<td>Email</td>
+				<td>Date de naissance</td>
+				<td>Id carte</td>
+				<td colspan=2>Action</td>
+			</tr>
+
+		</thead>
+		<tbody>
+			<tr th:each="e: ${listEmployees}">
+				<td th:text="${e.nom}"></td>
+				<td th:text="${e.prenom}"></td>
+				<td th:text="${e.email}"></td>
+				<td th:text="${e.date_naissance}">
+				<td th:text="${e.Carte.uid}">
+				<td><a th:href="@{'/employee/' + ${e.id}}"><input type="submit" value="Détails"></a></td>
+				
+
+		</tbody>
+	</table>
+
+</body>
+</html>
