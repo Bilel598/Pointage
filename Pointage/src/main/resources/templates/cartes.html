@@ -16,26 +16,20 @@
  
 </div>
 <div class="title">
-<h1>Liste des pointages</h1>
+<h1>Liste des cartes</h1>
 </div>
 <div class="main">
 	<table>
 		<thead>
 			<tr>
-				<td>Date</td>
-				<td>Uid Carte</td>
-				<td>Heure arrivée</td>
-				<td>Heure départ</td>
-				
+				<td>UID</td>
+				<td>Nom ?</td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="p: ${listPresence}">
-				<td th:text="${p.date}"></td>
-				<td><a  href='/' th:text="${p.carte.uid}"></a></td>
-				<td th:text="${p.heure_arrivee}"></td>
-				<td th:text="${p.heure_depart}"></td>
-				
+			<tr th:each="c: ${listCarte}">
+				<td th:text="${c.uid}"></td>
+				<td th:text="${c}"></td>
 			</tr>
 
 		</tbody>

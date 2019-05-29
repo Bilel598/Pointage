@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.title {
+	position: fixed;
+	padding: 1px 20%;
+	margin-left:0;
+	margin-top:0;
+	width: 100%;
+	top: 0;
+	left:0;
+  color: #f1f1f1;
+	background: #4CAF50;
+	margin-left:0;
+	overflow-x: enable;
+	overflow-y: disable;
+	border: 1px solid black
+/* 	z-index: 0; */
+	text-align:left;
+}
+
+.vertical-menu {
+	height: 100%;
+	width: 150px; /* Set a width if you like */
+	position: fixed;
+/* 	z-index: 100; */
+	top: 0;
+	left: 0;
+	height: 100%;
+	padding-top: 75px;
+	margin-left:0;
+	overflow-x: disable;
+	background-color: #eee;
+}
+
+.main {
+	position: fixed; 
+	margin-left : 150px;
+	padding: 0px 10px;
+	margin-left: 150px;
+	top:10%;
+}
+
+.vertical-menu a {
+	padding: 6px 8px 6px 16px;
+	/* Grey background color */
+	color: black; /* Black text color */
+	display: block; /* Make the links appear below each other */
+	padding: 12px; /* Add some padding */
+	text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+	background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+	background-color: #4CAF50;
+	/* Add a green color to the "active/current" link */
+	color: white;
+}

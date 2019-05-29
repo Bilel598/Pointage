@@ -134,12 +134,22 @@ public class MainController {
 		presenceService.save(presence);
 	}
 
-	@RequestMapping(value="/")
-	public String home(Model model) {
+	@RequestMapping(value="/employees")
+	public String listeDesEmployes(Model model) {
 
 		model.addAttribute("listEmployees",employeesService.listEmployees());
 		model.addAttribute("listCarte",carteService.listCartes());
 		return "employees";
+	}
+	
+	@RequestMapping(value="/")
+	public String home(Model model) {
+		return "home";
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
 	}
 
 	@GetMapping("/addemployee")
@@ -174,6 +184,10 @@ public class MainController {
 		return "employee";
 	}
 
-
+	@GetMapping("/cartes")
+	public String listeDesCartes(ModelMap model) {
+		model.addAttribute("listCarte",carteService.listCartes());
+		return "cartes";
+	}
 }	
 

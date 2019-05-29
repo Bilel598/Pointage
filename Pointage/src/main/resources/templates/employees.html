@@ -4,9 +4,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Page d'acceuil</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>Liste des employés <a th:text="${msg}"></a></h1>
+<div class="vertical-menu">
+  <a href="/" class="active">Home</a>
+  <a href="/employees">Liste des employés</a>
+  <a href="/cartes">Liste des cartes</a>
+  <a href="/pointage">Liste des présences</a>
+ 
+</div>
+<div class="title">
+<h1>Liste des employés</h1>
+</div>
+
+
+<div class="main">
+
 <table>
 		<thead>
 			<tr>
@@ -31,6 +45,6 @@
 
 		</tbody>
 	</table>
-
+</div>
 </body>
 </html>
