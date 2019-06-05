@@ -3,11 +3,11 @@ package com.pointage.controller;
 
 import javax.validation.Valid;
 
-
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pointage.entities.Carte;
 import com.pointage.entities.Employees;
 import com.pointage.entities.Presence;
 import com.pointage.mqtt.SimpleMqttCallBack;
@@ -134,6 +135,7 @@ public class MainController {
 		presenceService.save(presence);
 	}
 
+	@PostAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/employees")
 	public String listeDesEmployes(Model model) {
 
@@ -142,15 +144,15 @@ public class MainController {
 		return "employees";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
 	@RequestMapping(value="/")
 	public String home(Model model) {
 		return "home";
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		return "test";
-	}
 
 	@GetMapping("/addemployee")
 	public String newEmployee(ModelMap model) {
@@ -165,13 +167,27 @@ public class MainController {
 			return "addemployee";
 		}
 		employeesService.save(employee);
-		return "redirect:/";
+		return "redirect:/employees";
+	}
+	@GetMapping("/addcarte")
+	public String newCard(ModelMap model) {
+		Carte carte = new Carte();
+		model.addAttribute("carte",carte);
+		carte.setActive(false);
+		return "addcarte";
+	}
+	@PostMapping("/savecard")
+	public String saveCard(@Valid Carte carte, BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
+		if(result.hasErrors()) {
+			return "addemployee";
+		}
+		carteService.save(carte);
+		return "redirect:/cartes";
 	}
 
 	@GetMapping("/pointage")
 	public String pointage(ModelMap model) {
 		model.addAttribute("listPresence",presenceService.listePresence());
-		model.addAttribute("listEmployee",employeesService.chercherUnEmployee((long) 1));
 		model.addAttribute("listCarte",carteService.listCartes());
 		return "pointage";
 	}
