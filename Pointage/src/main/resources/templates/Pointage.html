@@ -7,14 +7,20 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<body>
+<header>
+eComptage
+</header>
 <div class="vertical-menu">
-  <a href="/" class="active">Home</a>
-  <a href="/employees">Liste des employés</a>
-  <a href="/cartes">Liste des cartes</a>
-  <a href="/pointage">Liste des présences</a>
- 
-</div>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+			th:href="@{/}">Home</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/employees' ? 'active':''}"
+			th:href="@{/employees}">Liste des employés</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/cartes' ? 'active':''}"
+			th:href="@{/cartes}">Liste des cartes</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/pointage' ? 'active':''}"
+			th:href="@{/pointage}">Liste des présences</a>
+
+	</div>
 <div class="title">
 <h1>Liste des pointages</h1>
 </div>
@@ -22,10 +28,10 @@
 	<table>
 		<thead>
 			<tr>
-				<td>Date</td>
-				<td>Uid Carte</td>
-				<td>Heure arrivée</td>
-				<td>Heure départ</td>
+				<th>Date</th>
+				<th>Uid Carte</th>
+				<th>Heure arrivée</th>
+				<th>Heure départ</th>
 				
 			</tr>
 		</thead>

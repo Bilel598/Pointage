@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
@@ -7,44 +8,51 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="vertical-menu">
-  <a href="/" class="active">Home</a>
-  <a href="/employees">Liste des employés</a>
-  <a href="/cartes">Liste des cartes</a>
-  <a href="/pointage">Liste des présences</a>
- 
-</div>
-<div class="title">
-<h1>Liste des employés</h1>
-</div>
+	<header> eComptage </header>
+	<div class="vertical-menu">
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+			th:href="@{/}">Home</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/employees' ? 'active':''}"
+			th:href="@{/employees}">Liste des employés</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/cartes' ? 'active':''}"
+			th:href="@{/cartes}">Liste des cartes</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/pointage' ? 'active':''}"
+			th:href="@{/pointage}">Liste des présences</a>
+
+	</div>
+	<div class="title">
+		<h1>Liste des employés</h1>
+	</div>
 
 
-<div class="main">
+	<div class="main">
 
-<table>
-		<thead>
-			<tr>
-				<td>Nom</td>
-				<td>Prenom</td>
-				<td>Email</td>
-				<td>Date de naissance</td>
-				<td>Id carte</td>
-				<td colspan=2>Action</td>
-			</tr>
+		<table>
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Email</th>
+					<th>Date de naissance</th>
+					<th>Id carte</th>
+					<th>Action</th>
+				</tr>
 
-		</thead>
-		<tbody>
-			<tr th:each="e: ${listEmployees}">
-				<td th:text="${e.nom}"></td>
-				<td th:text="${e.prenom}"></td>
-				<td th:text="${e.email}"></td>
-				<td th:text="${e.date_naissance}">
-				<td th:text="${e.Carte.uid}">
-				<td><a th:href="@{'/employee/' + ${e.id}}"><input type="submit" value="Détails"></a></td>
-				
-
-		</tbody>
-	</table>
-</div>
+			</thead>
+			<tbody>
+				<tr th:each="e: ${listEmployees}">
+					<td th:text="${e.nom}"></td>
+					<td th:text="${e.prenom}"></td>
+					<td th:text="${e.email}"></td>
+					<td th:text="${e.date_naissance}">
+					<td th:text="${e.Carte.uid}">
+					<td><a th:href="@{'/employee/' + ${e.id}}"><input
+							type="submit" value="Détails"></a></td>
+			</tbody>
+		</table>
+		<div class="ajout">
+			<button class="plus-button" onclick="location.href='/addemployee'">+</button>
+		</div>
+	</div>
 </body>
 </html>

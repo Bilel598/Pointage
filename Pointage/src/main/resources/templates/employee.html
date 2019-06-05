@@ -1,29 +1,45 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
 <meta charset="UTF-8">
 <title th:text="${Employee.nom }+ | ${Employee.prenom}"></title>
-</head>
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}"/></head>
 <body>
-<p th:text="${Employee}">
-	<div>
-		<h1>Fiche contact</h1>
+<header>
+eComptage
+</header>
+<div class="vertical-menu">
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+			th:href="@{/}">Home</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/employees' ? 'active':''}"
+			th:href="@{/employees}">Liste des employés</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/cartes' ? 'active':''}"
+			th:href="@{/cartes}">Liste des cartes</a>
+		<a th:classappend="${#httpServletRequest.getRequestURI() == '/pointage' ? 'active':''}"
+			th:href="@{/pointage}">Liste des présences</a>
+
+	</div>
+<div class="title">
+<h1 th:text="${Employee.prenom }+ | ${Employee.nom}">Liste des employés</h1>
+</div>
+<p th:text="${Employee} + à_supprimer ">
+	<div class="main">
 		<form th:action="@{/saveemployee}" method="post">
 		
 			<fieldset th:each="e: ${Employee}">
 				<legend>Coordonnées</legend>
-				<!-- Titre du fieldset -->
 
 				<label for="nom">Nom</label> 
 				<input type="text" name="nom" id="nom" th:value="${e.nom}"/> 
 				<label for="prenom">Prénom</label> 
 				<input type="text" name="prenom" id="prenom" th:value="${e.prenom}"/> 
 				<label for="email">Adresse mail</label> 
-				<input type="email"	name="email" id="email" th:value="${e.email}"/>
+				<input type="email" name="email" id="email" th:value="${e.email}"/>
 				<label for="date_naissance">Date de naissance</label>
 				<input type="text" name="date_naissance" th:value="${e.date_naissance}"/>
-				<input type="text" name="date_naissance" th:value="${e.Carte.uid}"/>
+<!-- 				<input type="text" name="date_naissance" th:value="${e.Carte.uid}"/> -->
 				<label for="carte">Carte</label>
 				<select name="carte">
 								<option th:each="c:${listCarte}" th:text="${c.uid}"

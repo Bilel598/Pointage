@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Derniers pointages</title>
+<title>Ajout de carte</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -22,24 +22,26 @@ eComptage
 
 	</div>
 <div class="title">
-<h1>Liste des cartes</h1>
+<h1>Ajout de carte</h1>
 </div>
-<div class="main">
-	<table>
-		<thead>
-			<tr>
-				<th>UID</th>
-				<th>Nom ?</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="c: ${listCarte}">
-				<td th:text="${c.uid}"></td>
-<!-- 				<td th:text="${listEmployee}"></td> -->
-			</tr>
+	<div class="main">
 
-		</tbody>
-	</table>
+		<form th:action="@{/savecard}" method="post">
+
+			<fieldset>
+				<legend>Nouvelle Carte</legend>
+
+				<label for="nom">UID</label> 
+				<input type="text" name="nom" id="nom" value="test"/> 
+				
+<!-- 				<label for="carte">Carte</label> -->
+<!-- 				<select name="carte"> -->
+<!-- 								<option th:each="c:${listCarte}" th:text="${c.uid}" -->
+<!-- 									th:value="${c.uid}"> -->
+<!-- 						</select> -->
+				<input type="submit" value="Ajouter !">
+			</fieldset>
+		</form>
 	</div>
 </body>
 </html>
